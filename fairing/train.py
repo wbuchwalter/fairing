@@ -12,6 +12,7 @@ from fairing.architectures.native.basic import BasicArchitecture
 from fairing.strategies.basic import BasicTrainingStrategy
 from fairing.metaparticle import MetaparticleClient
 from fairing.utils import get_unique_tag
+from fairing.notebook_helper import is_in_notebook
 
 logger = logging.getLogger('fairing')
 
@@ -113,7 +114,12 @@ def deploy_training(repository, architecture, base_image):
                           architecture=architecture,
                           base_image=base_image)
         trainer.deploy_training()
-        sys.exit(0)
+
+        if not is_in_notebook():
+            # Skip the rest of the code, otherwise we are going to start a local training
+            # In notebook we assume the deploy_training is called in a cell defined before
+            # the model training. so execution will be halted after the cell
+            sys.exit(0)
 
 
 class Train(object):
