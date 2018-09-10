@@ -105,6 +105,17 @@ class Trainer(object):
         self.strategy.exec_user_code(user_class)
 
 
+def deploy_training(repository, architecture, base_image):
+    if is_runtime_phase():
+        pass
+    else:
+        trainer = Trainer(repository=repository,
+                          architecture=architecture,
+                          base_image=base_image)
+        trainer.deploy_training()
+        sys.exit(0)
+
+
 class Train(object):
     def __init__(self,
                  repository,
