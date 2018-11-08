@@ -1,3 +1,8 @@
+# :warning: Fairing has moved!:warning: 
+ 
+Fairing is now part of the Kubeflow organisation, the new repository for the project is https://github.com/kubeflow/fairing 
+
+
 # Fairing
 
 Easily train and serve ML models on Kubernetes, directly from your python code.  
